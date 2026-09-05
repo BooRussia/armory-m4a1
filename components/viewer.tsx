@@ -6,10 +6,20 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 import { createM4Model, disposeM4Model } from '@/lib/m4-display-model';
 import { CATALOGUE, label, type Config, type Slot } from '@/lib/catalogue';
+import { loadDisplayAsset, disposeDisplayAsset } from '@/lib/gltf-model';
+import { M4_ASSET, type ModelMode, type AssetStatus } from '@/lib/model-assets';
+import { prepareAssetMaterials, isProtectedSurface } from '@/lib/asset-materials';
+import type { AssetAppearance } from '@/lib/asset-appearance';
+import { createDisplayLayout, visibleDisplayBounds, isDisplayVisible } from '@/lib/display-layout';
+import { loadAccessoryLibrary } from '@/lib/asset-variants';
+import { VARIANT_CATEGORIES } from '@/lib/variant-catalogue';
+import { publicAsset } from '@/lib/public-asset';
+import { displayedChoice } from '@/lib/part-library';
+import { PartThumbnail } from '@/components/part-thumbnail';
 
-export type ViewerHandle = { setView:(view:string)=>void; zoom:(factor:number)=>void; capture:()=>void; fullscreen:()=>void };
-type Props = { config:Config; selectedSlot:Slot; light:'studio'|'soft'; exposure:number; rotate:boolean; quality:'high'|'balanced'; onPick:(slot:string)=>void; onReady:()=>void; onError:(message:string)=>void; onThumbnails:(images:Record<string,string>)=>void };
-type Engine = { setConfig:(config:Config)=>void; setView:(v:string)=>void; zoom:(factor:number)=>void; capture:()=>void; thumbnails:(config:Config,slot:Slot)=>void; settings:()=>void };
+export type ViewerHandle = { reloadAsset:()=>void; setView:(view:string)=>void; focusPart:(id:string)=>void; zoom:(factor:number)=>void; capture:()=>void; fullscreen:()=>void };
+type Props = { pickerOpen?:boolean; mode:ModelMode; spread:boolean; reducedMotion:boolean; selectedAsset:string; appearance:AssetAppearance; onAssetPick:(id:string)=>void; onAssetStatus:(status:AssetStatus)=>void; config:Config; selectedSlot:Slot; light:'studio'|'soft'; exposure:number; rotate:boolean; quality:'high'|'balanced'; onPick:(slot:string)=>void; onReady:()=>void; onError:(message:string)=>void; onThumbnails:(images:Record<string,string>)=>void };
+type Engine = { setMode:(mode:ModelMode)=>void; layout:()=>void; visibility:()=>void; focusPart:(id:string)=>void; setConfig:(config:Config)=>void; setView:(v:string)=>void; zoom:(factor:number)=>void; capture:()=>void; thumbnails:(config:Config,slot:Slot)=>void; settings:()=>void };
 const CALLOUTS:{slot:Slot;name:string;x:number;y:number}[]=[
   {slot:'muzzle',name:'MUZZLE',x:.19,y:.31},
   {slot:'handguard',name:'HANDGUARD',x:.35,y:.16},
@@ -18,6 +28,16 @@ const CALLOUTS:{slot:Slot;name:string;x:number;y:number}[]=[
   {slot:'foregrip',name:'FOREGRIP',x:.30,y:.80},
   {slot:'magazine',name:'MAGAZINE',x:.53,y:.84},
   {slot:'finish',name:'FINISH',x:.75,y:.81},
+];
+const ASSET_CALLOUTS=[
+  {slot:'Muzzle_Exterior',name:'Muzzle exterior',x:.17,y:.36},
+  {slot:'Handguard',name:'Handguard',x:.34,y:.24},
+  {slot:'Optic',name:'Optic',x:.56,y:.15},
+  {slot:'Light',name:'Light',x:.22,y:.64},
+  {slot:'Stock',name:'Stock',x:.81,y:.32},
+  {slot:'Magazine',name:'Magazine',x:.49,y:.80},
+  {slot:'Pistol_Grip',name:'Pistol grip',x:.70,y:.78},
+  {slot:'Foregrip',name:'Foregrip',x:.34,y:.83},
 ];
 
 const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
@@ -28,9 +48,14 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
   const latest=useRef(props);
   useEffect(()=>{latest.current=props;},[props]);
   const [error,setError]=useState('');
+  const [availableVariantIds,setAvailableVariantIds]=useState<string[]>([]);
   const [retry,setRetry]=useState(0);
+  const displayedCallouts=props.mode==='asset'?ASSET_CALLOUTS:CALLOUTS;
+  const selectedCallout=props.mode==='asset'?props.selectedAsset:props.selectedSlot;
   useImperativeHandle(ref,()=>({
+    reloadAsset:()=>setRetry(value=>value+1),
     setView:v=>engine.current?.setView(v),
+    focusPart:id=>engine.current?.focusPart(id),
     zoom:f=>engine.current?.zoom(f),
     capture:()=>engine.current?.capture(),
     fullscreen:()=>{
@@ -56,7 +81,7 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
     renderer.domElement.setAttribute('role','img');
     host.appendChild(renderer.domElement);
     const scene=new THREE.Scene();
-    const camera=new THREE.PerspectiveCamera(34,1,.1,120);
+    const camera=new THREE.PerspectiveCamera(34,1,.02,120);
     const controls=new OrbitControls(camera,renderer.domElement);
     controls.enableDamping=true;controls.dampingFactor=.085;controls.enablePan=true;
     controls.minDistance=3;controls.maxDistance=35;controls.autoRotateSpeed=.6;
@@ -65,24 +90,31 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
     const env=pmrem.fromScene(room,.04);scene.environment=env.texture;
     room.dispose();pmrem.dispose();
     let photoEnvironment:THREE.DataTexture|null=null;
-    new HDRLoader().load('/assets/studio.hdr',texture=>{
+    new HDRLoader().load(publicAsset('/assets/studio.hdr'),texture=>{
       if(disposed){texture.dispose();return;}
       texture.mapping=THREE.EquirectangularReflectionMapping;
-      photoEnvironment=texture;scene.environment=texture;scene.background=texture;
+      photoEnvironment=texture;scene.environment=texture;scene.background=null;
       scene.backgroundBlurriness=.22;scene.backgroundIntensity=.12;
       scene.backgroundRotation.y=1.7;scene.environmentRotation.y=1.7;
     },undefined,()=>{ /* The self-contained studio remains available offline. */ });
-    const hemi=new THREE.HemisphereLight(0xe6efdb,0x323e28,2.1);scene.add(hemi);
+    const hemi=new THREE.HemisphereLight(0xf1f3f7,0x1a1a20,2.1);scene.add(hemi);
     const key=new THREE.DirectionalLight(0xfff1d8,4.2);key.position.set(-2,7,5);scene.add(key);
     key.castShadow=true;key.shadow.mapSize.set(1024,1024);
     key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=5;key.shadow.camera.bottom=-5;
     key.shadow.normalBias=.04;key.shadow.bias=-.0001;
     const rim=new THREE.DirectionalLight(0xd8e8ff,3.2);rim.position.set(2,4,-5);scene.add(rim);
-    const fill=new THREE.DirectionalLight(0xd9e2bf,1.3);fill.position.set(-5,1,3);scene.add(fill);
-    const ground=new THREE.Mesh(new THREE.PlaneGeometry(30,20),new THREE.ShadowMaterial({color:0x0b1007,opacity:.27}));
+    const fill=new THREE.DirectionalLight(0xe2e3ea,1.3);fill.position.set(-5,1,3);scene.add(fill);
+    const ground=new THREE.Mesh(new THREE.PlaneGeometry(30,20),new THREE.ShadowMaterial({color:0x070709,opacity:.27}));
     ground.rotation.x=-Math.PI/2;ground.position.y=-1.92;ground.receiveShadow=true;scene.add(ground);
-    let model=createM4Model(latest.current.config);scene.add(model);
-    const center=new THREE.Vector3(0,.08,0);
+    let model:THREE.Group=new THREE.Group();scene.add(model);
+    let activeMode:ModelMode|null=null;
+    let assetMaterials:ReturnType<typeof prepareAssetMaterials>|null=null;
+    let displayLayout:ReturnType<typeof createDisplayLayout>|null=null;
+    let variants:Awaited<ReturnType<typeof loadAccessoryLibrary>>['controller']|null=null;
+    let flipAmount=0;
+    let layoutAmount=0;
+    let assetGeneration=0;
+    const center=new THREE.Vector3();
     let cameraView='perspective';
     let hovering='';
     const highlighted:{mesh:THREE.Mesh;original:THREE.Material|THREE.Material[];clones:THREE.Material[]}[]=[];
@@ -93,19 +125,22 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
     function highlight(slot:string){
       if(hovering===slot)return;clearHighlight();if(!slot)return;hovering=slot;
       model.traverse(obj=>{
-        if(!(obj instanceof THREE.Mesh)||obj.userData.slot!==slot)return;
+        if(!(obj instanceof THREE.Mesh)||!isDisplayVisible(obj)||(activeMode==='asset'?obj.userData.assetPart:obj.userData.slot)!==slot)return;
         const original=obj.material;
         const clones=(Array.isArray(original)?original:[original]).map(m=>{
-          const c=m.clone();if(c instanceof THREE.MeshStandardMaterial){c.emissive.set(0x708839);c.emissiveIntensity=.13;}return c;
+          const c=m.clone();c.onBeforeCompile=m.onBeforeCompile;c.customProgramCacheKey=m.customProgramCacheKey;if(c instanceof THREE.MeshStandardMaterial&&!isProtectedSurface(obj,m)){c.emissive.set(0x737786);c.emissiveIntensity=.08;}return c;
         });
         obj.material=Array.isArray(original)?clones:clones[0];highlighted.push({mesh:obj,original,clones});
       });
       renderer.domElement.style.cursor='pointer';
     }
     function frame(view:string){
-      cameraView=view;const size=new THREE.Box3().setFromObject(model).getSize(new THREE.Vector3());
+      cameraView=view;const bounds=visibleDisplayBounds(model),size=bounds.getSize(new THREE.Vector3());
+      if(!bounds.isEmpty())bounds.getCenter(center);
+      if(size.lengthSq()===0)size.set(7.4,3,1);
       const distance=Math.max(size.y/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))),size.x/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*camera.aspect))*1.26;
-      const direction=view==='left'?new THREE.Vector3(0,.02,-1):view==='top'?new THREE.Vector3(0,1,.001):view==='right'?new THREE.Vector3(0,.025,1):new THREE.Vector3(1.1,.62,12);
+      const side=activeMode==='asset'?-1:1;
+      const direction=view==='left'?new THREE.Vector3(0,.02,-side):view==='top'?new THREE.Vector3(0,1,.001):view==='right'?new THREE.Vector3(0,.025,side):new THREE.Vector3(1.1,.62,12);
       camera.up.set(0,1,0);controls.target.copy(center);camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));camera.lookAt(center);controls.update();
     }
     function resize(){
@@ -119,10 +154,11 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
       const rect=renderer.domElement.getBoundingClientRect();
       pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);
       raycaster.setFromCamera(pointer,camera);
-      return String(raycaster.intersectObject(model,true).find(h=>h.object.userData.slot)?.object.userData.slot??'');
+      const key=activeMode==='asset'?'assetPart':'slot';
+      return String(raycaster.intersectObject(model,true).find(h=>isDisplayVisible(h.object)&&h.object.userData[key])?.object.userData[key]??'');
     }
     const down=(event:PointerEvent)=>{start.x=event.clientX;start.y=event.clientY;dragging=true;clearHighlight();};
-    const up=(event:PointerEvent)=>{dragging=false;if(Math.hypot(event.clientX-start.x,event.clientY-start.y)<5){const slot=hit(event);if(slot)latest.current.onPick(slot);}};
+    const up=(event:PointerEvent)=>{dragging=false;if(Math.hypot(event.clientX-start.x,event.clientY-start.y)<5){const slot=hit(event);if(slot){if(activeMode==='asset')latest.current.onAssetPick(slot);else latest.current.onPick(slot);}}};
     const move=(event:PointerEvent)=>{if(!dragging)highlight(hit(event));};
     const leave=()=>{dragging=false;clearHighlight();};
     const lost=(event:Event)=>{event.preventDefault();renderer.setAnimationLoop(null);setError('The graphics connection was interrupted. Restore the viewer to continue.');};
@@ -142,6 +178,7 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
     const cache=new Map<string,string>();
     function thumbnails(config:Config,slot:Slot){
       if(thumbTimer)clearTimeout(thumbTimer);const token=++generation;
+      if(activeMode!=='concept')return;
       const options=CATALOGUE.find(c=>c.id===slot)!.options;
       const images:Record<string,string>={};let index=0;
       function next(){
@@ -177,13 +214,83 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
     function settings(){
       renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,latest.current.quality==='high'?1.8:1));
       renderer.toneMappingExposure=latest.current.exposure;
-      key.intensity=latest.current.light==='studio'?4.2:2.4;
-      hemi.intensity=latest.current.light==='studio'?2.1:3;
-      rim.intensity=latest.current.light==='studio'?3.2:1.2;
+      const asset=activeMode==='asset';
+      controls.minDistance=asset ? .7 : 3;
+      key.intensity=latest.current.light==='studio'?(asset?1.8:4.2):(asset ? .8 : 2.4);
+      hemi.intensity=asset ? .25 : (latest.current.light==='studio'?2.1:3);
+      rim.intensity=latest.current.light==='studio'?(asset?1.6:3.2):(asset ? .6 : 1.2);
+      fill.intensity=asset ? .3 : 1.3;
+      scene.environmentIntensity=latest.current.light==='studio' ? .85 : 1.15;
     }
     let currentConfig=JSON.stringify(latest.current.config);
+    function visibility(){
+      clearHighlight();if(activeMode!=='asset')return;
+      variants?.apply(latest.current.appearance);
+      assetMaterials?.apply(latest.current.appearance);
+      updateAnchors();
+    }
+    function replaceModel(next:THREE.Group){
+      clearHighlight();disposeDisplayAsset(model);model=next;scene.add(model);
+      model.updateMatrixWorld(true);
+      const bounds=new THREE.Box3().setFromObject(model);
+      if(!bounds.isEmpty()){
+        bounds.getCenter(center);ground.position.y=bounds.min.y-.05;
+      }
+      updateAnchors();
+    }
+    function setMode(mode:ModelMode){
+      if(activeMode===mode)return;
+      activeMode=mode;const token=++assetGeneration;
+      assetMaterials=null;displayLayout=null;variants=null;layoutAmount=0;flipAmount=0;ground.visible=true;
+      generation++;if(thumbTimer)clearTimeout(thumbTimer);
+      replaceModel(new THREE.Group());settings();
+      if(mode==='concept'){
+        currentConfig=JSON.stringify(latest.current.config);
+        replaceModel(createM4Model(latest.current.config));frame(cameraView);
+        thumbnails(latest.current.config,latest.current.selectedSlot);
+        latest.current.onReady();return;
+      }
+      latest.current.onAssetStatus({phase:'loading'});
+      void loadDisplayAsset(M4_ASSET.url,renderer.capabilities.getMaxAnisotropy()).then(async result=>{
+        if(disposed||token!==assetGeneration){disposeDisplayAsset(result.root);return;}
+        let library:Awaited<ReturnType<typeof loadAccessoryLibrary>>;
+        try{library=await loadAccessoryLibrary(result.root,renderer.capabilities.getMaxAnisotropy());}
+        catch(error){disposeDisplayAsset(result.root);throw error;}
+        if(disposed||token!==assetGeneration){disposeDisplayAsset(result.root);return;}
+        variants=library.controller;
+        setAvailableVariantIds(variants.available);
+        result.report.availableVariants=variants.available;
+        result.report.variantWarning=library.warning;
+        assetMaterials=prepareAssetMaterials(result.root);
+        replaceModel(result.root);displayLayout=createDisplayLayout(model);
+        layoutAmount=latest.current.spread?1:0;displayLayout.set(layoutAmount);ground.visible=layoutAmount===0;
+        flipAmount=latest.current.appearance.magnifierFlipped?1:0;variants.flip(flipAmount);
+        visibility();frame(cameraView);
+        latest.current.onAssetStatus({phase:'ready',report:result.report});latest.current.onReady();
+      }).catch(()=>{
+        if(disposed||token!==assetGeneration)return;
+        setAvailableVariantIds([]);
+        latest.current.onAssetStatus({phase:'error',message:'The M4A1 asset could not load. Retry the model or open Concept studies.'});latest.current.onReady();
+      });
+    }
     engine.current={
-      setConfig(config){const next=JSON.stringify(config);if(next===currentConfig)return;clearHighlight();const old=model;model=createM4Model(config);currentConfig=next;scene.add(model);disposeM4Model(old);},
+      setMode,
+      layout(){
+        if(activeMode!=='asset'||!displayLayout)return;
+        // Fit the separated layout before the visual transition so every piece stays in view.
+        displayLayout.set(1);frame(cameraView);displayLayout.set(layoutAmount);updateAnchors();
+      },
+      visibility,
+      focusPart(id){
+        if(activeMode!=='asset')return;
+        const box=visibleDisplayBounds(model,id);if(box.isEmpty())return;
+        const size=box.getSize(new THREE.Vector3());
+        const target=box.getCenter(new THREE.Vector3());
+        const distance=Math.max(1,Math.max(size.y,size.x/camera.aspect)/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))*1.35+size.z*.5);
+        const direction=camera.position.clone().sub(controls.target).normalize();
+        controls.target.copy(target);camera.position.copy(target).addScaledVector(direction,distance);controls.update();
+      },
+      setConfig(config){if(activeMode!=='concept')return;const next=JSON.stringify(config);if(next===currentConfig)return;currentConfig=next;replaceModel(createM4Model(config));},
       setView:frame,
       zoom(factor){const offset=camera.position.clone().sub(controls.target).multiplyScalar(factor);offset.setLength(THREE.MathUtils.clamp(offset.length(),controls.minDistance,controls.maxDistance));camera.position.copy(controls.target).add(offset);controls.update();},
       capture(){
@@ -194,43 +301,79 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
       },
       thumbnails,settings,
     };
-    settings();resize();thumbnails(latest.current.config,latest.current.selectedSlot);
     const projected=new THREE.Vector3();
     const anchors=new Map<string,THREE.Vector3>();
     function updateAnchors(){
       anchors.clear();model.updateMatrixWorld(true);
-      model.children.forEach(child=>anchors.set(String(child.userData.slot),new THREE.Box3().setFromObject(child).getCenter(new THREE.Vector3())));
+      if(activeMode==='asset')ASSET_CALLOUTS.forEach(callout=>{
+        const box=visibleDisplayBounds(model,callout.slot);
+        if(!box.isEmpty())anchors.set(callout.slot,box.getCenter(new THREE.Vector3()));
+      });
+      else model.children.forEach(child=>anchors.set(String(child.userData.slot),new THREE.Box3().setFromObject(child).getCenter(new THREE.Vector3())));
     }
-    updateAnchors();
-    const originalSetConfig=engine.current.setConfig;
-    engine.current.setConfig=config=>{originalSetConfig(config);updateAnchors();};
-    renderer.setAnimationLoop(()=>{
-      if(disposed||document.hidden)return;controls.autoRotate=latest.current.rotate;controls.update();renderer.render(scene,camera);
+    setMode(latest.current.mode);settings();resize();
+    let previousTime=0;
+    renderer.setAnimationLoop(time=>{
+      const delta=previousTime?Math.min((time-previousTime)/1000,.05):0;previousTime=time;
+      if(disposed||document.hidden)return;
+      if(activeMode==='asset'&&variants){
+        const target=latest.current.appearance.magnifierFlipped?1:0;
+        if(flipAmount!==target){
+          flipAmount=latest.current.reducedMotion?target:THREE.MathUtils.damp(flipAmount,target,10,delta);
+          if(Math.abs(flipAmount-target)<.001)flipAmount=target;
+          variants.flip(flipAmount);updateAnchors();
+        }
+      }
+      if(activeMode==='asset'&&displayLayout){
+        const target=latest.current.spread?1:0;
+        if(layoutAmount!==target){
+          layoutAmount=latest.current.reducedMotion?target:THREE.MathUtils.damp(layoutAmount,target,9,delta);
+          if(Math.abs(layoutAmount-target)<.001)layoutAmount=target;
+          displayLayout.set(layoutAmount);ground.visible=layoutAmount===0;updateAnchors();
+          if(layoutAmount===0)frame(cameraView);
+        }
+      }
+      controls.autoRotate=latest.current.rotate;controls.update(delta);renderer.render(scene,camera);
       const width=host.clientWidth,height=host.clientHeight;
-      CALLOUTS.forEach(callout=>{
-        const anchor=anchors.get(callout.slot);if(!anchor||!Number.isFinite(anchor.x))return;
+      (activeMode==='asset'?ASSET_CALLOUTS:CALLOUTS).forEach(callout=>{
+        const anchor=anchors.get(callout.slot);
+        const line=lines.current[callout.slot],dot=dots.current[callout.slot];
+        const visible=!!anchor&&Number.isFinite(anchor.x);
+        line?.setAttribute('visibility',visible?'visible':'hidden');dot?.setAttribute('visibility',visible?'visible':'hidden');
+        if(!anchor||!visible)return;
         projected.copy(anchor).project(camera);
         const x=(projected.x*.5+.5)*width,y=(-projected.y*.5+.5)*height;
-        const line=lines.current[callout.slot],dot=dots.current[callout.slot];
         line?.setAttribute('x1',String(callout.x*width));line?.setAttribute('y1',String(callout.y*height));
         line?.setAttribute('x2',String(x));line?.setAttribute('y2',String(y));dot?.setAttribute('cx',String(x));dot?.setAttribute('cy',String(y));
       });
     });
-    latest.current.onReady();
     return()=>{
-      disposed=true;generation++;if(thumbTimer)clearTimeout(thumbTimer);
+      disposed=true;assetGeneration++;generation++;if(thumbTimer)clearTimeout(thumbTimer);
       engine.current=null;renderer.setAnimationLoop(null);observer.disconnect();controls.dispose();clearHighlight();
       renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointerup',up);
       renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerleave',leave);
       renderer.domElement.removeEventListener('webglcontextlost',lost);
-      disposeM4Model(model);ground.geometry.dispose();(ground.material as THREE.Material).dispose();key.shadow.dispose();
+      disposeDisplayAsset(model);ground.geometry.dispose();(ground.material as THREE.Material).dispose();key.shadow.dispose();
       env.dispose();photoEnvironment?.dispose();thumbRenderer?.dispose();thumbRenderer?.forceContextLoss();cache.clear();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();
     };
   },[retry]);
+  useEffect(()=>{engine.current?.setMode(props.mode);},[props.mode]);
+  useEffect(()=>{engine.current?.visibility();},[props.appearance]);
+  useEffect(()=>{engine.current?.layout();},[props.spread]);
   useEffect(()=>{engine.current?.setConfig(props.config);engine.current?.thumbnails(props.config,props.selectedSlot);},[props.config,props.selectedSlot]);
   useEffect(()=>{engine.current?.settings();},[props.light,props.exposure,props.quality]);
   return <div className="three-mount" ref={mount}>
-    <div className="model-callouts"><svg className="callout-lines" aria-hidden="true">{CALLOUTS.map(c=><g key={c.slot} className={props.selectedSlot===c.slot?'active':''}><line ref={node=>{lines.current[c.slot]=node;}}/><circle r={4} ref={node=>{dots.current[c.slot]=node;}}/></g>)}</svg>{CALLOUTS.map(c=><button key={c.slot} className={'model-callout '+(props.selectedSlot===c.slot?'active':'')} style={{left:c.x*100+'%',top:c.y*100+'%'}} onClick={()=>props.onPick(c.slot)}><span>{c.name}</span><strong>{label(c.slot,props.config[c.slot])}</strong><span className="callout-action">INSPECT +</span></button>)}</div>
+    <div className={'model-callouts '+(props.mode==='asset'?'thumbnail-callouts':'')}>
+      <svg className="callout-lines" aria-hidden="true">{displayedCallouts.map(c=><g key={c.slot} className={selectedCallout===c.slot?'active':''}><line ref={node=>{lines.current[c.slot]=node;}}/><circle r={4} ref={node=>{dots.current[c.slot]=node;}}/></g>)}</svg>
+      {displayedCallouts.map(c=>{
+        const category=VARIANT_CATEGORIES.find(v=>v.part===c.slot);
+        const item=category?displayedChoice(props.appearance,category.id,availableVariantIds):undefined;
+        const hidden=props.appearance.hiddenParts.includes(c.slot);
+        return <button key={c.slot} className={'model-callout '+(props.mode==='asset'?'slot-tile ':'')+(selectedCallout===c.slot?'active ':'')+(hidden?'hidden-slot':'')} data-part-slot={c.slot} style={{left:c.x*100+'%',top:c.y*100+'%'}} title={item?c.name+' · '+item.name:undefined} aria-label={item?c.name+': '+item.name+(hidden?' (hidden)':''):undefined} aria-expanded={props.mode==='asset'?props.pickerOpen&&selectedCallout===c.slot:undefined} aria-controls={props.mode==='asset'?'attachment-library':undefined} onClick={()=>{if(props.mode==='asset')props.onAssetPick(c.slot);else props.onPick(c.slot);}}>
+          {props.mode==='asset'&&item?<><span className="slot-heading">{c.name.replace(' exterior','').toUpperCase()}</span><PartThumbnail id={item.thumbnail}/><span className="slot-item-name">{item.shortName}<span className={'slot-status '+(hidden?'is-hidden':'')}/></span></>:<><span>{c.name}</span><strong>{label(c.slot as Slot,props.config[c.slot as Slot])}</strong><span className="callout-action">INSPECT +</span></>}
+        </button>;
+      })}
+    </div>
     {error&&<div className="viewer-error" role="alert"><h2>Viewer paused</h2><p>{error}</p><button onClick={()=>{setError('');setRetry(r=>r+1);}}>Restore viewer</button></div>}
   </div>;
 });

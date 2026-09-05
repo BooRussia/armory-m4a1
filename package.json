@@ -8,8 +8,11 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "build:pages": "node scripts/build-pages.mjs",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
+    "test": "node tests/asset-pipeline.mjs",
+    "test:pages": "node tests/pages-export.mjs",
     "format": "oxfmt"
   },
   "dependencies": {

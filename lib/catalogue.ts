@@ -20,6 +20,7 @@ export const PRESETS:{id:string;name:string;note:string;config:Config}[]=[
 ];
 export function label(slot:Slot,value:string){return CATALOGUE.find(c=>c.id===slot)?.options.find(o=>o.id===value)?.name??value;}
 export function validConfig(v:unknown):v is Config {return !!v&&typeof v==='object'&&!Array.isArray(v)&&CATALOGUE.every(c=>c.options.some(o=>o.id===(v as Record<string,unknown>)[c.id]));}
+export function readConceptExport(raw:string):Config|null{try{const value:unknown=JSON.parse(raw);if(!value||typeof value!=='object')return null;const item=value as Record<string,unknown>;return item.format==='armory-appearance'&&item.version===1&&item.platform==='m4a1-exterior-study'&&validConfig(item.config)?item.config:null;}catch{return null;}}
 export type SavedAppearance={id:string;name:string;savedAt:string;config:Config};
 export const STORAGE_KEY='armory:appearances:v1';
 export function readAppearances(raw:string|null):SavedAppearance[]{if(!raw)return [];try{const d:unknown=JSON.parse(raw);return Array.isArray(d)?d.filter((v):v is SavedAppearance=>!!v&&typeof v==='object'&&typeof v.id==='string'&&typeof v.name==='string'&&v.name.length<=80&&typeof v.savedAt==='string'&&validConfig(v.config)).slice(0,100):[];}catch{return [];}}

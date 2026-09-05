@@ -1,0 +1,208 @@
+{
+  "passed": true,
+  "sourceWorldTransformsPreserved": true,
+  "roots": [
+    "HHS_VIII_Visual",
+    "CTR_Stock",
+    "K2_Grip",
+    "PMAG_Magazine",
+    "RVG_Foregrip",
+    "RISII_Handguard",
+    "Warden_Muzzle",
+    "Scout_Light"
+  ],
+  "hiddenSourceOriginals": [
+    "Front_Sight",
+    "Handguard",
+    "Magazine",
+    "Muzzle_Exterior",
+    "Pistol_Grip",
+    "Sight",
+    "Sight_2",
+    "Stock",
+    "Switch1",
+    "Switch2"
+  ],
+  "sourceMeshCount": 17,
+  "newAccessoryMeshCount": 355,
+  "newAccessoryTriangles": 144620,
+  "counts": {
+    "HHS_VIII_Visual": {
+      "meshes": 32,
+      "triangles": 67660,
+      "longitudinalSpanRelativeToSource": 0.2810059733771365
+    },
+    "CTR_Stock": {
+      "meshes": 20,
+      "triangles": 5564,
+      "longitudinalSpanRelativeToSource": 0.25290537119644213
+    },
+    "K2_Grip": {
+      "meshes": 14,
+      "triangles": 2624,
+      "longitudinalSpanRelativeToSource": 0.07616233921751021
+    },
+    "PMAG_Magazine": {
+      "meshes": 55,
+      "triangles": 3348,
+      "longitudinalSpanRelativeToSource": 0.11486941751846502
+    },
+    "RVG_Foregrip": {
+      "meshes": 21,
+      "triangles": 2900,
+      "longitudinalSpanRelativeToSource": 0.055001180793209314
+    },
+    "RISII_Handguard": {
+      "meshes": 172,
+      "triangles": 43296,
+      "longitudinalSpanRelativeToSource": 0.35100748602628695
+    },
+    "Warden_Muzzle": {
+      "meshes": 19,
+      "triangles": 9396,
+      "longitudinalSpanRelativeToSource": 0.10360217628354487
+    },
+    "Scout_Light": {
+      "meshes": 22,
+      "triangles": 9832,
+      "longitudinalSpanRelativeToSource": 0.1454030978267802
+    }
+  },
+  "packedImages": [
+    {
+      "name": "M4A1_Base_Color_glTF.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "M4A1_MetallicRoughness_glTF.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "M4A1_Normal_glTF.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Original polymer micrograin normal",
+      "size": [
+        128,
+        128
+      ],
+      "packed": true
+    },
+    {
+      "name": "studio.hdr",
+      "size": [
+        2048,
+        1024
+      ],
+      "packed": true
+    },
+    {
+      "name": "Tan-fine-finish-normal",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true
+    },
+    {
+      "name": "Tan-fine-finish-roughness",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true
+    }
+  ],
+  "alignedCollisionReview": {
+    "broadPhaseCandidates": 4,
+    "surfaceIntersectionPairs": [
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Corner_spine_-0.025_0.108",
+        "intersectingSurfaceTrianglePairs": 103
+      },
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Corner_spine_0.025_0.108",
+        "intersectingSurfaceTrianglePairs": 99
+      },
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Long_rail_back_0.117",
+        "intersectingSurfaceTrianglePairs": 47
+      },
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Top_bottom_tooth_0.117_00",
+        "intersectingSurfaceTrianglePairs": 30
+      }
+    ],
+    "method": "Evaluated exterior triangle BVH overlap in source display space. Visual review is still required; this is not physical compatibility validation."
+  },
+  "flippedCollisionReview": {
+    "broadPhaseCandidates": 4,
+    "surfaceIntersectionPairs": [
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Corner_spine_-0.025_0.108",
+        "intersectingSurfaceTrianglePairs": 103
+      },
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Corner_spine_0.025_0.108",
+        "intersectingSurfaceTrianglePairs": 99
+      },
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Long_rail_back_0.117",
+        "intersectingSurfaceTrianglePairs": 47
+      },
+      {
+        "optic": "EXPS3_Mount",
+        "other": "RISII_Top_bottom_tooth_0.117_00",
+        "intersectingSurfaceTrianglePairs": 30
+      }
+    ],
+    "method": "Evaluated exterior triangle BVH overlap in source display space. Visual review is still required; this is not physical compatibility validation."
+  },
+  "pivot": {
+    "id": "G33_Pivot",
+    "nativeAlignedRotation": [
+      0,
+      0,
+      0
+    ],
+    "nativeFlipAxis": "Y",
+    "nativeFlipRadians": 1.5707963267948966,
+    "gltfFlipAxis": "Z",
+    "gltfFlipRadians": -1.5707963267948966,
+    "fixedMountStationary": true
+  },
+  "proportionNotice": "Bounds/ratios use arbitrary source art display units, not physical dimensions or fit.",
+  "overallLongitudinalSpanRelativeToSource": 1.0655226979926753,
+  "reopenedMasterVerification": {
+    "passed": true,
+    "allRootsPresent": true,
+    "alignedPivotRestored": true,
+    "fixedMountParentPreserved": true,
+    "sourceReplacementsHidden": true,
+    "packedImageCount": 7,
+    "renderSize": [
+      2200,
+      1320
+    ]
+  }
+}

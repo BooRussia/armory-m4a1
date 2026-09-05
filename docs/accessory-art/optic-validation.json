@@ -1,0 +1,409 @@
+{
+  "passed": true,
+  "method": "Three.js GLTFLoader structural validation with PNG header stubs; actual surface images checked by Blender preview renders.",
+  "bytes": 3174064,
+  "sha256": "410edd95ac7651b369e4e6795a1e26c9e8cbde38e8ddc82ee97b105ba815ce35",
+  "gltfNodeCount": 35,
+  "gltfMeshCount": 32,
+  "renderMeshCount": 40,
+  "materials": 10,
+  "embeddedImages": 2,
+  "evaluatedTriangles": 67660,
+  "bounds": {
+    "min": [
+      -0.04555435851216316,
+      0.10850000008940697,
+      -0.026999999769032
+    ],
+    "max": [
+      0.04399999976158142,
+      0.2215000009164214,
+      0.2539999920409173
+    ]
+  },
+  "pivot": {
+    "name": "G33_Pivot",
+    "position": [
+      0.03500000014901161,
+      0.14300000667572021,
+      0.18299999833106995
+    ],
+    "axis": "z",
+    "radians": -1.5707963267948966,
+    "initialRotation": [
+      0,
+      0,
+      0
+    ],
+    "fixedMountUnchanged": true,
+    "tubeCenterAligned": [
+      0,
+      0.17999999970197678,
+      0.14099999889731407
+    ],
+    "tubeCenterFlipped": [
+      0.07199999317526817,
+      0.17800000682473183,
+      0.14099999889731407
+    ]
+  },
+  "nodeNames": [
+    "EXPS3_Battery_Cap",
+    "EXPS3_Battery_Housing",
+    "EXPS3_Button_Icon_1",
+    "EXPS3_Button_Icon_2",
+    "EXPS3_Buttons",
+    "EXPS3_Cap_Tether",
+    "EXPS3_Caution_Graphic",
+    "EXPS3_Caution_Icon",
+    "EXPS3_EOTECH_Marking",
+    "EXPS3_Fasteners",
+    "EXPS3_Hood",
+    "EXPS3_Logo",
+    "EXPS3_Mount",
+    "EXPS3_Mount_Lever",
+    "EXPS3_NV_Marking",
+    "EXPS3_Optical_Exterior_Tray",
+    "EXPS3_Window",
+    "EXPS3_Window_Frame",
+    "EXPS3_Group",
+    "G33_Fixed_Mount",
+    "G33_Adjustment_Caps",
+    "G33_EOTECH_Marking",
+    "G33_Eyepiece_Ring",
+    "G33_Front_Gasket",
+    "G33_Front_Lens",
+    "G33_Front_Rim",
+    "G33_Jacket_Ribs",
+    "G33_Jacket_Seam",
+    "G33_Moving_Cradle",
+    "G33_Rear_Gasket",
+    "G33_Rear_Lens",
+    "G33_Rubber_Jacket",
+    "G33_Tube",
+    "G33_Pivot",
+    "HHS_VIII_Visual"
+  ],
+  "inventory": [
+    {
+      "name": "EXPS3_Battery_Cap",
+      "parent": "EXPS3_Group",
+      "triangles": 8916,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Battery_Housing",
+      "parent": "EXPS3_Group",
+      "triangles": 1208,
+      "keepMaterial": false,
+      "material": "Tan anodized exterior - fine finish",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Button_Icon_1",
+      "parent": "EXPS3_Group",
+      "triangles": 8,
+      "keepMaterial": true,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Button_Icon_2",
+      "parent": "EXPS3_Group",
+      "triangles": 8,
+      "keepMaterial": true,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder002",
+      "parent": "EXPS3_Buttons",
+      "triangles": 1020,
+      "keepMaterial": false,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder002_1",
+      "parent": "EXPS3_Buttons",
+      "triangles": 1396,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder002_2",
+      "parent": "EXPS3_Buttons",
+      "triangles": 376,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Cap_Tether",
+      "parent": "EXPS3_Group",
+      "triangles": 1200,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Caution_Graphic",
+      "parent": "EXPS3_Group",
+      "triangles": 188,
+      "keepMaterial": true,
+      "material": "Observed caution label yellow",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Caution_Icon",
+      "parent": "EXPS3_Group",
+      "triangles": 8,
+      "keepMaterial": true,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_EOTECH_Marking",
+      "parent": "EXPS3_Group",
+      "triangles": 420,
+      "keepMaterial": true,
+      "material": "Observed cream lettering",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder004",
+      "parent": "EXPS3_Fasteners",
+      "triangles": 2040,
+      "keepMaterial": false,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder004_1",
+      "parent": "EXPS3_Fasteners",
+      "triangles": 1016,
+      "keepMaterial": false,
+      "material": "Recessed visible head finish",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder004_2",
+      "parent": "EXPS3_Fasteners",
+      "triangles": 752,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Hood",
+      "parent": "EXPS3_Group",
+      "triangles": 2200,
+      "keepMaterial": false,
+      "material": "Tan anodized exterior - fine finish",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Logo",
+      "parent": "EXPS3_Group",
+      "triangles": 940,
+      "keepMaterial": true,
+      "material": "Observed cream lettering",
+      "transmission": 0
+    },
+    {
+      "name": "Cube048",
+      "parent": "EXPS3_Mount",
+      "triangles": 188,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "Cube048_1",
+      "parent": "EXPS3_Mount",
+      "triangles": 188,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "Cube048_2",
+      "parent": "EXPS3_Mount",
+      "triangles": 188,
+      "keepMaterial": false,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Mount_Lever",
+      "parent": "EXPS3_Group",
+      "triangles": 220,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_NV_Marking",
+      "parent": "EXPS3_Group",
+      "triangles": 60,
+      "keepMaterial": true,
+      "material": "Observed cream lettering",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Optical_Exterior_Tray",
+      "parent": "EXPS3_Group",
+      "triangles": 188,
+      "keepMaterial": false,
+      "material": "Tan anodized exterior - fine finish",
+      "transmission": 0
+    },
+    {
+      "name": "EXPS3_Window",
+      "parent": "EXPS3_Group",
+      "triangles": 700,
+      "keepMaterial": true,
+      "material": "Smoky blue holographic window",
+      "transmission": 0.7300000190734863
+    },
+    {
+      "name": "EXPS3_Window_Frame",
+      "parent": "EXPS3_Group",
+      "triangles": 1408,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Fixed_Mount",
+      "parent": "HHS_VIII_Visual",
+      "triangles": 1680,
+      "keepMaterial": false,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder008",
+      "parent": "G33_Adjustment_Caps",
+      "triangles": 2040,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder008_1",
+      "parent": "G33_Adjustment_Caps",
+      "triangles": 5476,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "Cylinder008_2",
+      "parent": "G33_Adjustment_Caps",
+      "triangles": 2040,
+      "keepMaterial": false,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "G33_EOTECH_Marking",
+      "parent": "G33_Pivot",
+      "triangles": 420,
+      "keepMaterial": true,
+      "material": "Observed cream lettering",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Eyepiece_Ring",
+      "parent": "G33_Pivot",
+      "triangles": 8816,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Front_Gasket",
+      "parent": "G33_Pivot",
+      "triangles": 2048,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Front_Lens",
+      "parent": "G33_Pivot",
+      "triangles": 1824,
+      "keepMaterial": true,
+      "material": "Blue violet coated exterior lens",
+      "transmission": 0.6800000071525574
+    },
+    {
+      "name": "G33_Front_Rim",
+      "parent": "G33_Pivot",
+      "triangles": 2048,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Jacket_Ribs",
+      "parent": "G33_Pivot",
+      "triangles": 6300,
+      "keepMaterial": false,
+      "material": "Tan rubber jacket",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Jacket_Seam",
+      "parent": "G33_Pivot",
+      "triangles": 1408,
+      "keepMaterial": false,
+      "material": "Tan edge and cap metal",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Moving_Cradle",
+      "parent": "G33_Pivot",
+      "triangles": 1396,
+      "keepMaterial": false,
+      "material": "Mount charcoal anodized",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Rear_Gasket",
+      "parent": "G33_Pivot",
+      "triangles": 2048,
+      "keepMaterial": false,
+      "material": "Button and gasket rubber",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Rear_Lens",
+      "parent": "G33_Pivot",
+      "triangles": 1824,
+      "keepMaterial": true,
+      "material": "Blue violet coated exterior lens",
+      "transmission": 0.6800000071525574
+    },
+    {
+      "name": "G33_Rubber_Jacket",
+      "parent": "G33_Pivot",
+      "triangles": 1408,
+      "keepMaterial": false,
+      "material": "Tan rubber jacket",
+      "transmission": 0
+    },
+    {
+      "name": "G33_Tube",
+      "parent": "G33_Pivot",
+      "triangles": 2048,
+      "keepMaterial": false,
+      "material": "Tan anodized exterior - fine finish",
+      "transmission": 0
+    }
+  ]
+}

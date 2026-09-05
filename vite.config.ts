@@ -2,7 +2,11 @@ import { sites } from '@openai/sites-vite-plugin';
 import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
 import { defineConfig } from 'vite';
-import hostingConfig from './.openai/hosting.json';
+import { existsSync, readFileSync } from 'node:fs';
+
+const standalone = process.env.ARMORY_PAGES === '1' || !existsSync('.openai/hosting.json');
+const hostingConfig = standalone ? { d1: null, r2: null }
+  : JSON.parse(readFileSync('.openai/hosting.json', 'utf8'));
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   '00000000-0000-4000-8000-000000000000';
@@ -35,6 +39,10 @@ const localBindingConfig = {
 };
 
 export default defineConfig(async () => {
+  if (standalone) return {
+    css: { postcss: { plugins: [tailwindcss()] } },
+    plugins: [vinext()],
+  };
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= 'false';
