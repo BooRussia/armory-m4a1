@@ -40,3 +40,4 @@
 
 The project is independent of Colt and Battlestate Games.
 - Surface detail texture and runtime material shaders: original project work, September 5, 2026. Numeric data generated with a fixed seed; no downloaded material textures or baked lighting. Rendering sources and limits: docs/material-rendering.md.
+- All-part material pass: explicit sourced/inferred recipes cover 380 current rendered material slots; an original approximate angular grip-height pattern extends the numeric detail texture. Manufacturer evidence and unknowns are documented in docs/part-materials.md. Shader values are artistic approximations; no new manufacturer CAD or textures were imported.

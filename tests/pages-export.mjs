@@ -17,7 +17,7 @@ for(const reference of references){
   assert.ok(existsSync(file),'Missing published file: '+pathname);
   checked.add(pathname);
 }
-for(const asset of ['assets/studio.hdr','assets/materials/surface-detail.png','assets/m4a1/m4a1-blender-v2.glb','assets/m4a1/hhs-viii.glb','assets/m4a1/exterior-variants.glb','.nojekyll'])assert.ok(existsSync(join(output,asset)),asset);
+for(const asset of ['assets/studio.hdr','assets/materials/surface-detail-v2.png','assets/m4a1/m4a1-blender-v2.glb','assets/m4a1/hhs-viii.glb','assets/m4a1/exterior-variants.glb','.nojekyll'])assert.ok(existsSync(join(output,asset)),asset);
 const manifest=JSON.parse(readFileSync('dist/server/vinext-prerender.json','utf8'));
 assert.ok(manifest.routes.some(route=>route.route==='/'&&route.status==='rendered'));
 console.log(JSON.stringify({status:'passed',basePath,localHtmlReferences:checked.size,staticWorkbench:true}));

@@ -1,0 +1,2314 @@
+{
+  "materialSlots": 380,
+  "recipes": [
+    "source-magazine",
+    "source-receiver",
+    "source-polymer",
+    "source-steel",
+    "source-rail",
+    "optic-housing",
+    "marking",
+    "optic-mount",
+    "rubber-controls",
+    "dark-hardware",
+    "recess",
+    "glass-hws",
+    "glass-magnifier",
+    "rubber-jacket",
+    "ris-anodized",
+    "ctr-molding",
+    "rubber-pad",
+    "k2-molding",
+    "k2-tsp",
+    "pmag-grip",
+    "pmag-molding",
+    "rvg-molding",
+    "rvg-grip",
+    "warden-collar",
+    "warden-cerakote",
+    "scout-anodized",
+    "glass-light"
+  ],
+  "assignments": [
+    {
+      "mesh": "Magazine",
+      "part": "Magazine",
+      "material": "Magazine - source PBR",
+      "recipe": "source-magazine"
+    },
+    {
+      "mesh": "Base",
+      "part": "Base",
+      "material": "Base - source PBR",
+      "recipe": "source-receiver"
+    },
+    {
+      "mesh": "Pistol_Grip",
+      "part": "Pistol_Grip",
+      "material": "Pistol_Grip - source PBR",
+      "recipe": "source-polymer"
+    },
+    {
+      "mesh": "Charging_Handle",
+      "part": "Charging_Handle",
+      "material": "Charging_Handle - source PBR",
+      "recipe": "source-receiver"
+    },
+    {
+      "mesh": "Sight",
+      "part": "Sight",
+      "material": "Sight - source PBR",
+      "recipe": "source-receiver"
+    },
+    {
+      "mesh": "Sight_2",
+      "part": "Sight_2",
+      "material": "Sight_2 - source PBR",
+      "recipe": "source-receiver"
+    },
+    {
+      "mesh": "Switch1",
+      "part": "Switch1",
+      "material": "Switch1 - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Switch2",
+      "part": "Switch2",
+      "material": "Switch2 - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Firemode_Selector",
+      "part": "Firemode_Selector",
+      "material": "Firemode_Selector - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Trigger",
+      "part": "Trigger",
+      "material": "Trigger - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Ejector_Lid",
+      "part": "Ejector_Lid",
+      "material": "Ejector_Lid - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Ejector_2",
+      "part": "Ejector_2",
+      "material": "Ejector_2 - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Barrel",
+      "part": "Barrel",
+      "material": "Barrel - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Handguard",
+      "part": "Handguard",
+      "material": "Handguard - source PBR",
+      "recipe": "source-rail"
+    },
+    {
+      "mesh": "Front_Sight",
+      "part": "Front_Sight",
+      "material": "Front_Sight - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Muzzle_Exterior",
+      "part": "Muzzle_Exterior",
+      "material": "Muzzle_Exterior - source PBR",
+      "recipe": "source-steel"
+    },
+    {
+      "mesh": "Stock",
+      "part": "Stock",
+      "material": "Stock - source PBR",
+      "recipe": "source-polymer"
+    },
+    {
+      "mesh": "EXPS3_Battery_Cap",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "EXPS3_Battery_Housing",
+      "part": "Optic",
+      "material": "Tan anodized exterior - fine finish",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "EXPS3_Button_Icon_1",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "EXPS3_Button_Icon_2",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "Cylinder002",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "optic-mount"
+    },
+    {
+      "mesh": "Cylinder002_1",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "rubber-controls"
+    },
+    {
+      "mesh": "Cylinder002_2",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "EXPS3_Cap_Tether",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "rubber-controls"
+    },
+    {
+      "mesh": "EXPS3_Caution_Graphic",
+      "part": "Optic",
+      "material": "Observed caution label yellow",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "EXPS3_Caution_Icon",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "EXPS3_EOTECH_Marking",
+      "part": "Optic",
+      "material": "Observed cream lettering",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "Cylinder004",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "optic-mount"
+    },
+    {
+      "mesh": "Cylinder004_1",
+      "part": "Optic",
+      "material": "Recessed visible head finish",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "Cylinder004_2",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "recess"
+    },
+    {
+      "mesh": "EXPS3_Hood",
+      "part": "Optic",
+      "material": "Tan anodized exterior - fine finish",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "EXPS3_Logo",
+      "part": "Optic",
+      "material": "Observed cream lettering",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "Cube048",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "Cube048_1",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "recess"
+    },
+    {
+      "mesh": "Cube048_2",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "optic-mount"
+    },
+    {
+      "mesh": "EXPS3_Mount_Lever",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "EXPS3_NV_Marking",
+      "part": "Optic",
+      "material": "Observed cream lettering",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "EXPS3_Optical_Exterior_Tray",
+      "part": "Optic",
+      "material": "Tan anodized exterior - fine finish",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "EXPS3_Window",
+      "part": "Optic",
+      "material": "Smoky blue holographic window",
+      "recipe": "glass-hws"
+    },
+    {
+      "mesh": "EXPS3_Window_Frame",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "rubber-controls"
+    },
+    {
+      "mesh": "G33_Fixed_Mount",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "optic-mount"
+    },
+    {
+      "mesh": "Cylinder008",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "recess"
+    },
+    {
+      "mesh": "Cylinder008_1",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "Cylinder008_2",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "optic-mount"
+    },
+    {
+      "mesh": "G33_EOTECH_Marking",
+      "part": "Optic",
+      "material": "Observed cream lettering",
+      "recipe": "marking"
+    },
+    {
+      "mesh": "G33_Eyepiece_Ring",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "G33_Front_Gasket",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "rubber-controls"
+    },
+    {
+      "mesh": "G33_Front_Lens",
+      "part": "Optic",
+      "material": "Blue violet coated exterior lens",
+      "recipe": "glass-magnifier"
+    },
+    {
+      "mesh": "G33_Front_Rim",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "G33_Jacket_Ribs",
+      "part": "Optic",
+      "material": "Tan rubber jacket",
+      "recipe": "rubber-jacket"
+    },
+    {
+      "mesh": "G33_Jacket_Seam",
+      "part": "Optic",
+      "material": "Tan edge and cap metal",
+      "recipe": "rubber-jacket"
+    },
+    {
+      "mesh": "G33_Moving_Cradle",
+      "part": "Optic",
+      "material": "Mount charcoal anodized",
+      "recipe": "optic-mount"
+    },
+    {
+      "mesh": "G33_Rear_Gasket",
+      "part": "Optic",
+      "material": "Button and gasket rubber",
+      "recipe": "rubber-controls"
+    },
+    {
+      "mesh": "G33_Rear_Lens",
+      "part": "Optic",
+      "material": "Blue violet coated exterior lens",
+      "recipe": "glass-magnifier"
+    },
+    {
+      "mesh": "G33_Rubber_Jacket",
+      "part": "Optic",
+      "material": "Tan rubber jacket",
+      "recipe": "rubber-jacket"
+    },
+    {
+      "mesh": "G33_Tube",
+      "part": "Optic",
+      "material": "Tan anodized exterior - fine finish",
+      "recipe": "optic-housing"
+    },
+    {
+      "mesh": "RISII_Corner_spine_-0025_0044",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Corner_spine_-0025_0108",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Corner_spine_0025_0044",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Corner_spine_0025_0108",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Exterior_head_-0041_0001_0052",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Exterior_head_-0041_0001_01",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Exterior_head_-0041_0023_0052",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Exterior_head_-0041_0023_01",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Exterior_head_0041_0001_0052",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Exterior_head_0041_0001_01",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Exterior_head_0041_0023_0052",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Exterior_head_0041_0023_01",
+      "part": "Handguard",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "RISII_Long_rail_back_0036",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Long_rail_back_0117",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_rail_back_-0039",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_rail_back_0039",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_00",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_01",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_02",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_03",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_04",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_05",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_06",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_07",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_08",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_09",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_10",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_11",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_12",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_13",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_14",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_15",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_16",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_17",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_18",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_19",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_20",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_21",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_22",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_23",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_-0039_24",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_00",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_01",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_02",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_03",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_04",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_05",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_06",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_07",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_08",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_09",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_10",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_11",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_12",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_13",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_14",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_15",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_16",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_17",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_18",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_19",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_20",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_21",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_22",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_23",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Side_tooth_0039_24",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_00",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_01",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_02",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_03",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_04",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_05",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_06",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_07",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_08",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_09",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_10",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_11",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_12",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_13",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_14",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_15",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_16",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_17",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_18",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_19",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_20",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_21",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_22",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_23",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_24",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_25",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0036_26",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_00",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_01",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_02",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_03",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_04",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_05",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_06",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_07",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_08",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_09",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_10",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_11",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_12",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_13",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_14",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_15",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_16",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_17",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_18",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_19",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_20",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_21",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_22",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_23",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_24",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_25",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Top_bottom_tooth_0117_26",
+      "part": "Handguard",
+      "material": "Original earth edge details",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_00",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_01",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_02",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_03",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_04",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_05",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_06",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_07",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_08",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_09",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_10",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_11",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_0_12",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_00",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_01",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_02",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_03",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_04",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_05",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_06",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_07",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_08",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_09",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_10",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_11",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_-0032_1_12",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_00",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_01",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_02",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_03",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_04",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_05",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_06",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_07",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_08",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_09",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_10",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_11",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_0_12",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_00",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_01",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_02",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_03",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_04",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_05",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_06",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_07",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_08",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_09",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_10",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_11",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "RISII_Vent_0032_1_12",
+      "part": "Handguard",
+      "material": "Original earth anodized rail",
+      "recipe": "ris-anodized"
+    },
+    {
+      "mesh": "CTR_Cheek_shell",
+      "part": "Stock",
+      "material": "Original graphite polymer",
+      "recipe": "ctr-molding"
+    },
+    {
+      "mesh": "CTR_Cosmetic_neck",
+      "part": "Stock",
+      "material": "Original dark anodized metal",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "CTR_Decorative_pivot_-1",
+      "part": "Stock",
+      "material": "Original dark anodized metal",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "CTR_Decorative_pivot_1",
+      "part": "Stock",
+      "material": "Original dark anodized metal",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "CTR_Friction_tab",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "ctr-molding"
+    },
+    {
+      "mesh": "CTR_Latch_silhouette",
+      "part": "Stock",
+      "material": "Original molded edge highlights",
+      "recipe": "ctr-molding"
+    },
+    {
+      "mesh": "CTR_Open_A_frame",
+      "part": "Stock",
+      "material": "Original graphite polymer",
+      "recipe": "ctr-molding"
+    },
+    {
+      "mesh": "CTR_Pad_rib_00",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_01",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_02",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_03",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_04",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_05",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_06",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_07",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_08",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Pad_rib_09",
+      "part": "Stock",
+      "material": "Original stippled inset polymer",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Shoulder_pad",
+      "part": "Stock",
+      "material": "Original soft rubber details",
+      "recipe": "rubber-pad"
+    },
+    {
+      "mesh": "CTR_Sling_eye_-1",
+      "part": "Stock",
+      "material": "Original dark anodized metal",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "CTR_Sling_eye_1",
+      "part": "Stock",
+      "material": "Original dark anodized metal",
+      "recipe": "dark-hardware"
+    },
+    {
+      "mesh": "K2_Base_cap",
+      "part": "Pistol_Grip",
+      "material": "Original stippled inset polymer",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Main_shell",
+      "part": "Pistol_Grip",
+      "material": "Original graphite polymer",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Molded_grain_-1",
+      "part": "Pistol_Grip",
+      "material": "Original stippled inset polymer",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Molded_grain_1",
+      "part": "Pistol_Grip",
+      "material": "Original stippled inset polymer",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_00",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_01",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_02",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_03",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_04",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_05",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_06",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Rear_ridge_07",
+      "part": "Pistol_Grip",
+      "material": "Original molded edge highlights",
+      "recipe": "k2-molding"
+    },
+    {
+      "mesh": "K2_Textured_panel_-1",
+      "part": "Pistol_Grip",
+      "material": "Original stippled inset polymer",
+      "recipe": "k2-tsp"
+    },
+    {
+      "mesh": "K2_Textured_panel_1",
+      "part": "Pistol_Grip",
+      "material": "Original stippled inset polymer",
+      "recipe": "k2-tsp"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_-1_00",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_-1_01",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_-1_02",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_-1_03",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_-1_04",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_1_00",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_1_01",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_1_02",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_1_03",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Cross_rib_1_04",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Dot_panel_-1",
+      "part": "Magazine",
+      "material": "Original stippled inset polymer",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Dot_panel_1",
+      "part": "Magazine",
+      "material": "Original stippled inset polymer",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Flared_floorplate",
+      "part": "Magazine",
+      "material": "Original stippled inset polymer",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_-1_00",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_-1_01",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_-1_02",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_-1_03",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_1_00",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_1_01",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_1_02",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Long_rib_1_03",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-grip"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_0",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_1",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_2",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_3",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_4",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_5",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_6",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_0_7",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_0",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_1",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_2",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_3",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_4",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_5",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_6",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_-1_1_7",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_0",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_1",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_2",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_3",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_4",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_5",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_6",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_0_7",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_0",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_1",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_2",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_3",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_4",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_5",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_6",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Paint_dot_1_1_7",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Polymer_shell",
+      "part": "Magazine",
+      "material": "Original graphite polymer",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "PMAG_Upper_band",
+      "part": "Magazine",
+      "material": "Original molded edge highlights",
+      "recipe": "pmag-molding"
+    },
+    {
+      "mesh": "RVG_Cosmetic_bridge",
+      "part": "Foregrip",
+      "material": "Original dark anodized metal",
+      "recipe": "rvg-molding"
+    },
+    {
+      "mesh": "RVG_End_ridge_00_0094",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_00_0141",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_01_0094",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_01_0141",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_02_0094",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_02_0141",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_03_0094",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_03_0141",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_04_0094",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_04_0141",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_05_0094",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_05_0141",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_06_0094",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_End_ridge_06_0141",
+      "part": "Foregrip",
+      "material": "Original molded edge highlights",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_Heel_cap",
+      "part": "Foregrip",
+      "material": "Original stippled inset polymer",
+      "recipe": "rvg-molding"
+    },
+    {
+      "mesh": "RVG_Molded_grain_-1",
+      "part": "Foregrip",
+      "material": "Original stippled inset polymer",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_Molded_grain_1",
+      "part": "Foregrip",
+      "material": "Original stippled inset polymer",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_Textured_inset_-1",
+      "part": "Foregrip",
+      "material": "Original stippled inset polymer",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_Textured_inset_1",
+      "part": "Foregrip",
+      "material": "Original stippled inset polymer",
+      "recipe": "rvg-grip"
+    },
+    {
+      "mesh": "RVG_Vertical_shell",
+      "part": "Foregrip",
+      "material": "Original graphite polymer",
+      "recipe": "rvg-molding"
+    },
+    {
+      "mesh": "Warden_Collar_grip_00",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_01",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_02",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_03",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_04",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_05",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_06",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_07",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_08",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_09",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_10",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_grip_11",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_ridge_00",
+      "part": "Muzzle_Exterior",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_ridge_01",
+      "part": "Muzzle_Exterior",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Collar_ridge_02",
+      "part": "Muzzle_Exterior",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Warden_Front_lip",
+      "part": "Muzzle_Exterior",
+      "material": "Original earth ceramic finish",
+      "recipe": "warden-cerakote"
+    },
+    {
+      "mesh": "Warden_Main_shroud",
+      "part": "Muzzle_Exterior",
+      "material": "Original earth ceramic finish",
+      "recipe": "warden-cerakote"
+    },
+    {
+      "mesh": "Warden_Opaque_front_surface",
+      "part": "Muzzle_Exterior",
+      "material": "Original soft rubber details",
+      "recipe": "recess"
+    },
+    {
+      "mesh": "Warden_Rear_collar",
+      "part": "Muzzle_Exterior",
+      "material": "Original dark anodized metal",
+      "recipe": "warden-collar"
+    },
+    {
+      "mesh": "Scout_Body_flute_00",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_01",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_02",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_03",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_04",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_05",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_06",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_07",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_08",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Body_flute_09",
+      "part": "Light",
+      "material": "Original molded edge highlights",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Cosmetic_bridge",
+      "part": "Light",
+      "material": "Original dark anodized metal",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Front_head",
+      "part": "Light",
+      "material": "Original dark anodized metal",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Front_rim",
+      "part": "Light",
+      "material": "Original dark anodized metal",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Head_shoulder",
+      "part": "Light",
+      "material": "Original dark anodized metal",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Heat_ring_00",
+      "part": "Light",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Heat_ring_01",
+      "part": "Light",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Heat_ring_02",
+      "part": "Light",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Lens_inner_glint",
+      "part": "Light",
+      "material": "Original decorative charcoal hardware",
+      "recipe": "recess"
+    },
+    {
+      "mesh": "Scout_Main_body",
+      "part": "Light",
+      "material": "Original dark anodized metal",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Tail_shroud",
+      "part": "Light",
+      "material": "Original dark anodized metal",
+      "recipe": "scout-anodized"
+    },
+    {
+      "mesh": "Scout_Tail_surface",
+      "part": "Light",
+      "material": "Original soft rubber details",
+      "recipe": "rubber-controls"
+    },
+    {
+      "mesh": "Scout_Tinted_lens",
+      "part": "Light",
+      "material": "Original tinted light window",
+      "recipe": "glass-light"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import * as THREE from 'three';
 const app=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const cache=path.join(app,'node_modules','.cache','armory-asset-test');
 fs.mkdirSync(cache,{recursive:true});
-const modules=['model-assets','gltf-model','asset-appearance','asset-materials','surface-geometry','display-layout','catalogue','variant-catalogue','asset-variants','public-asset','part-library'];
+const modules=['model-assets','gltf-model','asset-appearance','asset-materials','surface-geometry','surface-recipes','display-layout','catalogue','variant-catalogue','asset-variants','public-asset','part-library'];
 for(const name of modules){
   const source=fs.readFileSync(path.join(app,'lib',name+'.ts'),'utf8');
   let output=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
@@ -20,6 +20,7 @@ const {loadDisplayAsset,disposeDisplayAsset}=await moduleFor('gltf-model');
 const {BASE_MODEL_PARTS,M4_ASSET}=await moduleFor('model-assets');
 const {prepareAssetMaterials,surfaceKind}=await moduleFor('asset-materials');
 const {prepareSurfaceGeometry}=await moduleFor('surface-geometry');
+const {resolveSurfaceRecipe,SURFACE_RECIPES}=await moduleFor('surface-recipes');
 const {createDisplayLayout,visibleDisplayBounds,isDisplayVisible}=await moduleFor('display-layout');
 const {DEFAULT,readConceptExport}=await moduleFor('catalogue');
 const {DEFAULT_ASSET,SHOWCASE_ASSET,validAssetAppearance,readAssetAppearances,assetExport,readAssetExport}=await moduleFor('asset-appearance');
@@ -180,6 +181,38 @@ control.apply({...SHOWCASE_ASSET,hiddenParts:['Optic']});
 assert.equal(isDisplayVisible(pivot.children[0]),false,'A hidden accessory must not remain selectable through its child meshes');
 assert.ok(visibleDisplayBounds(full,'Optic').isEmpty(),'Hidden accessories must not produce a focus target');
 control.apply(SHOWCASE_ASSET);
+const materialCoverage=[];
+full.traverse(object=>{
+  if(!object.isMesh)return;
+  for(const material of Array.isArray(object.material)?object.material:[object.material]){
+    const recipe=resolveSurfaceRecipe(object,material);
+    assert.notEqual(recipe.id,'authored','Every current material needs an explicit recipe: '+object.name+' / '+material.name);
+    materialCoverage.push({mesh:object.name,part:object.userData.assetPart,material:material.name,recipe:recipe.id});
+  }
+});
+assert.equal(materialCoverage.length,380);
+const recipeFor=name=>materialCoverage.find(entry=>entry.mesh===name)?.recipe;
+assert.equal(recipeFor('CTR_Pad_rib_00'),'rubber-pad');
+assert.equal(recipeFor('Scout_Body_flute_00'),'scout-anodized');
+assert.equal(recipeFor('Scout_Heat_ring_00'),'scout-anodized');
+assert.equal(recipeFor('G33_Jacket_Seam'),'rubber-jacket');
+assert.equal(recipeFor('K2_Textured_panel_-1'),'k2-tsp');
+assert.equal(recipeFor('K2_Main_shell'),'k2-molding');
+assert.equal(recipeFor('RVG_Cosmetic_bridge'),'rvg-molding');
+assert.equal(recipeFor('RVG_End_ridge_00_0094'),'rvg-grip');
+const k2Surfaces=materialCoverage.filter(entry=>entry.mesh.startsWith('K2_'));
+assert.equal(k2Surfaces.length,14);
+k2Surfaces.forEach(entry=>assert.equal(SURFACE_RECIPES[entry.recipe].kind,'polymer'));
+assert.equal(recipeFor('Warden_Main_shroud'),'warden-cerakote');
+assert.equal(recipeFor('Warden_Rear_collar'),'warden-collar');
+assert.equal(recipeFor('PMAG_Paint_dot_-1_0_0'),'pmag-molding');
+assert.equal(recipeFor('PMAG_Long_rib_-1_00'),'pmag-grip');
+for(const recipe of Object.values(SURFACE_RECIPES)){
+  assert.ok(recipe.roughness.every(value=>value>=0&&value<=1));
+  assert.ok(recipe.metalness>=0&&recipe.metalness<=1);
+  if(['polymer','rubber','glass'].includes(recipe.kind))assert.equal(recipe.metalness,0);
+}
+fs.writeFileSync(path.join(cache,'material-coverage.json'),JSON.stringify({materialSlots:materialCoverage.length,recipes:[...new Set(materialCoverage.map(entry=>entry.recipe))],assignments:materialCoverage},null,2));
 const coatings=prepareAssetMaterials(full);
 coatings.apply({...SHOWCASE_ASSET,finishes:Object.fromEntries(VARIANT_CATEGORIES.map(c=>[c.part,'sand']))});
 let preserved=0;
@@ -193,6 +226,16 @@ full.traverse(object=>{
   }
 });
 assert.ok(preserved>0);
+for(const name of ['EXPS3_Window','G33_Front_Lens','G33_Rear_Lens','Scout_Tinted_lens']){
+  const material=full.getObjectByName(name).material;
+  assert.ok(material instanceof THREE.MeshPhysicalMaterial);
+  assert.ok('PHYSICAL' in material.defines,'Cloning the original lens must retain the physical shading define');
+  assert.equal(material.metalness,0,'Optical surfaces must not become metallic mirrors');
+  assert.equal(material.depthWrite,false);
+  assert.ok(material.opacity>0&&material.opacity<.5);
+}
+assert.equal(full.getObjectByName('K2_Textured_panel_-1').material.userData.surfaceRecipe,'k2-tsp');
+assert.equal(full.getObjectByName('Scout_Body_flute_00').material.metalness,SURFACE_RECIPES['scout-anodized'].metalness);
 disposeDisplayAsset(full);
 const partial=(await loadDisplayAsset(dataURL(M4_ASSET.url),1)).root;
 const fallback=await loadAccessoryLibrary(partial,1,['data:model/gltf-binary;base64,AAAA',dataURL(VARIANT_BUNDLES[1])]);

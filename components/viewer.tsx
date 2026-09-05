@@ -88,9 +88,10 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
     const stripbox=new THREE.RectAreaLight(0xe4edff,4,4,.65);
     stripbox.position.set(1,2,-4);stripbox.lookAt(0,0,0);scene.add(stripbox);
     let detailTexture:THREE.Texture|undefined;
-    const detailReady=new THREE.TextureLoader().loadAsync(publicAsset('/assets/materials/surface-detail.png')).then(texture=>{
+    const detailReady=new THREE.TextureLoader().loadAsync(publicAsset('/assets/materials/surface-detail-v2.png')).then(texture=>{
       if(disposed){texture.dispose();return undefined;}
       texture.colorSpace=THREE.NoColorSpace;
+      texture.premultiplyAlpha=false; // Alpha encodes grip height, not transparency.
       texture.wrapS=texture.wrapT=THREE.RepeatWrapping;
       texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
       texture.minFilter=THREE.LinearMipmapLinearFilter;
