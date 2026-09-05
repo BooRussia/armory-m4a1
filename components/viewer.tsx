@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 import { createM4Model, disposeM4Model } from '@/lib/m4-display-model';
 import { CATALOGUE, label, type Config, type Slot } from '@/lib/catalogue';
 import { loadDisplayAsset, disposeDisplayAsset } from '@/lib/gltf-model';
@@ -81,6 +82,21 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
     renderer.domElement.setAttribute('role','img');
     host.appendChild(renderer.domElement);
     const scene=new THREE.Scene();
+    RectAreaLightUniformsLib.init();
+    const softbox=new THREE.RectAreaLight(0xfff7ec,5,5,2.2);
+    softbox.position.set(-1,4,5);softbox.lookAt(0,0,0);scene.add(softbox);
+    const stripbox=new THREE.RectAreaLight(0xe4edff,4,4,.65);
+    stripbox.position.set(1,2,-4);stripbox.lookAt(0,0,0);scene.add(stripbox);
+    let detailTexture:THREE.Texture|undefined;
+    const detailReady=new THREE.TextureLoader().loadAsync(publicAsset('/assets/materials/surface-detail.png')).then(texture=>{
+      if(disposed){texture.dispose();return undefined;}
+      texture.colorSpace=THREE.NoColorSpace;
+      texture.wrapS=texture.wrapT=THREE.RepeatWrapping;
+      texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+      texture.minFilter=THREE.LinearMipmapLinearFilter;
+      texture.magFilter=THREE.LinearFilter;
+      detailTexture=texture;return texture;
+    }).catch(()=>undefined);
     const camera=new THREE.PerspectiveCamera(34,1,.02,120);
     const controls=new OrbitControls(camera,renderer.domElement);
     controls.enableDamping=true;controls.dampingFactor=.085;controls.enablePan=true;
@@ -220,6 +236,10 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
       hemi.intensity=asset ? .25 : (latest.current.light==='studio'?2.1:3);
       rim.intensity=latest.current.light==='studio'?(asset?1.6:3.2):(asset ? .6 : 1.2);
       fill.intensity=asset ? .3 : 1.3;
+      softbox.visible=stripbox.visible=asset;
+      softbox.intensity=latest.current.light==='studio'?5:2.5;
+      stripbox.intensity=latest.current.light==='studio'?4:1.4;
+      if(asset){key.intensity*=.55;rim.intensity*=.55;}
       scene.environmentIntensity=latest.current.light==='studio' ? .85 : 1.15;
     }
     let currentConfig=JSON.stringify(latest.current.config);
@@ -251,7 +271,7 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
         latest.current.onReady();return;
       }
       latest.current.onAssetStatus({phase:'loading'});
-      void loadDisplayAsset(M4_ASSET.url,renderer.capabilities.getMaxAnisotropy()).then(async result=>{
+      void Promise.all([loadDisplayAsset(M4_ASSET.url,renderer.capabilities.getMaxAnisotropy()),detailReady]).then(async ([result,detail])=>{
         if(disposed||token!==assetGeneration){disposeDisplayAsset(result.root);return;}
         let library:Awaited<ReturnType<typeof loadAccessoryLibrary>>;
         try{library=await loadAccessoryLibrary(result.root,renderer.capabilities.getMaxAnisotropy());}
@@ -261,7 +281,7 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
         setAvailableVariantIds(variants.available);
         result.report.availableVariants=variants.available;
         result.report.variantWarning=library.warning;
-        assetMaterials=prepareAssetMaterials(result.root);
+        assetMaterials=prepareAssetMaterials(result.root,detail);
         replaceModel(result.root);displayLayout=createDisplayLayout(model);
         layoutAmount=latest.current.spread?1:0;displayLayout.set(layoutAmount);ground.visible=layoutAmount===0;
         flipAmount=latest.current.appearance.magnifierFlipped?1:0;variants.flip(flipAmount);
@@ -354,7 +374,7 @@ const Viewer=forwardRef<ViewerHandle,Props>(function Viewer(props,ref){
       renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerleave',leave);
       renderer.domElement.removeEventListener('webglcontextlost',lost);
       disposeDisplayAsset(model);ground.geometry.dispose();(ground.material as THREE.Material).dispose();key.shadow.dispose();
-      env.dispose();photoEnvironment?.dispose();thumbRenderer?.dispose();thumbRenderer?.forceContextLoss();cache.clear();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();
+      env.dispose();photoEnvironment?.dispose();detailTexture?.dispose();thumbRenderer?.dispose();thumbRenderer?.forceContextLoss();cache.clear();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();
     };
   },[retry]);
   useEffect(()=>{engine.current?.setMode(props.mode);},[props.mode]);

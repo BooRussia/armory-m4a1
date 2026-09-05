@@ -8,7 +8,7 @@ import * as THREE from 'three';
 const app=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const cache=path.join(app,'node_modules','.cache','armory-asset-test');
 fs.mkdirSync(cache,{recursive:true});
-const modules=['model-assets','gltf-model','asset-appearance','asset-materials','display-layout','catalogue','variant-catalogue','asset-variants','public-asset','part-library'];
+const modules=['model-assets','gltf-model','asset-appearance','asset-materials','surface-geometry','display-layout','catalogue','variant-catalogue','asset-variants','public-asset','part-library'];
 for(const name of modules){
   const source=fs.readFileSync(path.join(app,'lib',name+'.ts'),'utf8');
   let output=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
@@ -18,7 +18,8 @@ for(const name of modules){
 const moduleFor=name=>import(pathToFileURL(path.join(cache,name+'.mjs')));
 const {loadDisplayAsset,disposeDisplayAsset}=await moduleFor('gltf-model');
 const {BASE_MODEL_PARTS,M4_ASSET}=await moduleFor('model-assets');
-const {prepareAssetMaterials}=await moduleFor('asset-materials');
+const {prepareAssetMaterials,surfaceKind}=await moduleFor('asset-materials');
+const {prepareSurfaceGeometry}=await moduleFor('surface-geometry');
 const {createDisplayLayout,visibleDisplayBounds,isDisplayVisible}=await moduleFor('display-layout');
 const {DEFAULT,readConceptExport}=await moduleFor('catalogue');
 const {DEFAULT_ASSET,SHOWCASE_ASSET,validAssetAppearance,readAssetAppearances,assetExport,readAssetExport}=await moduleFor('asset-appearance');
@@ -69,7 +70,7 @@ const stock=root.getObjectByName('Stock').material,base=root.getObjectByName('Ba
 assert.notEqual(stock,base,'Per-part coatings cannot share their material instance');
 assert.equal(stock.map,colorMap);assert.equal(stock.normalMap,normalMap);
 const programs=[stock,base].map(material=>{
-  const shader={uniforms:{},fragmentShader:THREE.ShaderLib.standard.fragmentShader};
+  const shader={uniforms:{},vertexShader:THREE.ShaderLib.standard.vertexShader,fragmentShader:THREE.ShaderLib.standard.fragmentShader};
   material.onBeforeCompile(shader,null);
   assert.ok(shader.fragmentShader.includes('coatingAlbedo'));
   assert.ok(shader.fragmentShader.includes('#include <normal_fragment_maps>'));
@@ -80,6 +81,42 @@ assert.equal(programs[0].uniforms.armoryCoating.value,1);
 assert.equal(programs[1].uniforms.armoryCoating.value,0);
 materials.apply(DEFAULT_ASSET);
 assert.equal(programs[0].uniforms.armoryCoating.value,0);
+assert.equal(programs[0].uniforms.armoryDielectric.value,1,'Polymer stays nonmetallic under scratches');
+assert.equal(programs[0].uniforms.armoryResponse.value.w,0,'Polymer has no metal substrate');
+materials.apply({...DEFAULT_ASSET,wear:'weathered'});
+assert.equal(programs[0].uniforms.armoryWear.value,.85);
+materials.apply({...DEFAULT_ASSET,wear:'factory'});
+assert.equal(programs[0].uniforms.armoryWear.value,0);
+assert.equal(validAssetAppearance({...DEFAULT_ASSET,wear:'invalid'}),false);
+assert.deepEqual(readAssetExport(JSON.stringify(assetExport({...SHOWCASE_ASSET,wear:'weathered'}))),{...SHOWCASE_ASSET,wear:'weathered'});
+const classificationMesh=new THREE.Mesh();classificationMesh.userData.assetPart='Stock';
+assert.equal(surfaceKind(classificationMesh,new THREE.MeshStandardMaterial({name:'Original soft rubber details'})),'rubber');
+assert.equal(surfaceKind(classificationMesh,new THREE.MeshStandardMaterial({name:'Original decorative charcoal hardware'})),'metal');
+classificationMesh.geometry.dispose();classificationMesh.material.dispose();
+const edgeBox=new THREE.Mesh(new THREE.BoxGeometry(1,1,1)),edgePlane=new THREE.Mesh(new THREE.PlaneGeometry(1,1,2,2));
+edgeBox.updateMatrixWorld(true);edgePlane.updateMatrixWorld(true);
+const cubeData=prepareSurfaceGeometry(edgeBox),planeData=prepareSurfaceGeometry(edgePlane);
+assert.equal(cubeData.userData.armoryConvexEdges,12,'Only the twelve convex box edges receive wear');
+assert.equal(planeData.userData.armoryConvexEdges,0,'Coplanar diagonals and open boundaries must not receive wear');
+for(const attribute of ['armoryPosition','armoryDirection','armoryEdgeDistance','armoryEdgeDistanceB']){
+  assert.ok(Array.from(cubeData.getAttribute(attribute).array).every(Number.isFinite));
+}
+const boundSurface=Array.from(cubeData.getAttribute('armoryPosition').array);
+edgeBox.geometry.dispose();edgeBox.geometry=cubeData;
+edgeBox.position.set(5,2,1);edgeBox.rotation.y=1.2;edgeBox.updateMatrixWorld(true);
+assert.deepEqual(Array.from(cubeData.getAttribute('armoryPosition').array),boundSurface,'Material coordinates must stay bound to moving geometry');
+cubeData.dispose();planeData.dispose();edgePlane.geometry.dispose();edgeBox.material.dispose();edgePlane.material.dispose();
+const seamMesh=new THREE.Mesh(new THREE.BoxGeometry(1,2,1));seamMesh.updateMatrixWorld(true);
+const seamGeometry=prepareSurfaceGeometry(seamMesh);
+function sampleEdge(i,j,t){
+  return Math.min(...['armoryEdgeDistance','armoryEdgeDistanceB'].flatMap(name=>{
+    const attribute=seamGeometry.getAttribute(name);
+    return [0,1,2].map(channel=>THREE.MathUtils.lerp(attribute.getComponent(i,channel),attribute.getComponent(j,channel),t));
+  }));
+}
+assert.ok(Math.abs(sampleEdge(1,2,.001)-sampleEdge(3,5,.001))<1e-8,'Both sides of an internal diagonal must agree on edge wear');
+assert.ok(Math.abs(sampleEdge(1,2,.001)-.001)<1e-8);
+seamGeometry.dispose();seamMesh.geometry.dispose();seamMesh.material.dispose();
 const rest=new Map();root.traverse(object=>{if(object.isMesh)rest.set(object,object.position.clone());});
 const layout=createDisplayLayout(root);layout.set(1);
 assert.ok(root.getObjectByName('Stock').position.distanceTo(rest.get(root.getObjectByName('Stock')))>0);
@@ -105,6 +142,7 @@ for(const invalid of [
   {...DEFAULT_ASSET,variants:{unknown:'hhs-viii'}},
   {...DEFAULT_ASSET,variants:[]},
   {...DEFAULT_ASSET,magnifierFlipped:'true'},
+  {...DEFAULT_ASSET,wear:10},
 ])assert.equal(validAssetAppearance(invalid),false);
 const dataURL=file=>'data:model/gltf-binary;base64,'+fs.readFileSync(path.join(app,'public',file)).toString('base64');
 const full=(await loadDisplayAsset(dataURL(M4_ASSET.url),8)).root;
@@ -148,7 +186,7 @@ let preserved=0;
 full.traverse(object=>{
   if(!object.isMesh||!object.userData.keepMaterial)return;
   for(const material of Array.isArray(object.material)?object.material:[object.material]){
-    const shader={uniforms:{},fragmentShader:THREE.ShaderLib.standard.fragmentShader};
+    const shader={uniforms:{},vertexShader:THREE.ShaderLib.standard.vertexShader,fragmentShader:THREE.ShaderLib.standard.fragmentShader};
     material.onBeforeCompile(shader,null);
     assert.equal(shader.uniforms.armoryCoating,undefined,'Glass and markings must not receive cosmetic coatings');
     preserved++;

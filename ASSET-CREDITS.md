@@ -39,3 +39,4 @@
   - No attribution or licensing is asserted for the user's reference screenshot. It is not included in the delivered application.
 
 The project is independent of Colt and Battlestate Games.
+- Surface detail texture and runtime material shaders: original project work, September 5, 2026. Numeric data generated with a fixed seed; no downloaded material textures or baked lighting. Rendering sources and limits: docs/material-rendering.md.

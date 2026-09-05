@@ -8,7 +8,13 @@ export const FINISHES = [
   { id: 'olive', name: 'Olive', color: '#65704f' },
 ] as const;
 export type FinishId = typeof FINISHES[number]['id'];
-export type AssetAppearance = { hiddenParts: string[]; finishes: Record<string, FinishId>; variants?: VariantSelection; magnifierFlipped?: boolean };
+export const SURFACE_WEAR = [
+  { id: 'factory', name: 'Fresh' },
+  { id: 'handled', name: 'Used' },
+  { id: 'weathered', name: 'Worn' },
+] as const;
+export type SurfaceWear = typeof SURFACE_WEAR[number]['id'];
+export type AssetAppearance = { hiddenParts: string[]; finishes: Record<string, FinishId>; variants?: VariantSelection; magnifierFlipped?: boolean; wear?: SurfaceWear };
 export const DEFAULT_ASSET: AssetAppearance = { hiddenParts: [], finishes: {} };
 export const SHOWCASE_ASSET: AssetAppearance = { hiddenParts: [], finishes: {}, variants: SHOWCASE_VARIANTS, magnifierFlipped: false };
 export const ASSET_STORAGE_KEY = 'armory:asset-appearances:v1';
@@ -25,7 +31,8 @@ export function validAssetAppearance(value: unknown): value is AssetAppearance {
     && !!item.finishes && typeof item.finishes === 'object' && !Array.isArray(item.finishes)
     && Object.entries(item.finishes).every(([id, finish]) => ids.has(id) && typeof finish === 'string' && finishIds.has(finish))
     && (item.variants === undefined || validVariants(item.variants))
-    && (item.magnifierFlipped === undefined || typeof item.magnifierFlipped === 'boolean');
+    && (item.magnifierFlipped === undefined || typeof item.magnifierFlipped === 'boolean')
+    && (item.wear === undefined || SURFACE_WEAR.some(option => option.id === item.wear));
 }
 
 export function readAssetAppearances(raw: string | null): SavedAssetAppearance[] {

@@ -37,7 +37,7 @@ The accessory library adds eight original Blender exterior studies: EOTECH HHS V
 
 Sources & fidelity contains six exact Tarkov Wiki game-item names with direct citations. These are a reference backlog for artwork, not identities assigned to the current mesh. Search-indexed names were checked September 4, 2026; direct wiki access was blocked. No current game values, mechanical behavior, real compatibility, purchasing or firing simulation is supplied.
 
-Rendering preserves supplied UVs and PBR images. Decoded image pixels match the baseline exactly. Blender normal strength was reduced to 0.35 for a less coarse appearance; its original OpenGL/DirectX convention remains undocumented. Optional cosmetic coatings preserve surface texture while changing albedo, roughness and metallic response through Three.js shaders. Original finish restores the artist material response. Turntable and separated-layout transitions use elapsed time and respect reduced motion. The separated layout uses arbitrary art offsets, not real mechanical travel or an assembly sequence. Display scale is arbitrary.
+Rendering preserves supplied UVs and PBR images. Decoded image pixels match the baseline exactly. Blender normal strength was reduced to 0.35 for a less coarse appearance; its original OpenGL/DirectX convention remains undocumented. Optional cosmetic coatings preserve surface texture while changing albedo, roughness and metallic response through Three.js shaders. Original finish retains the source colors beneath the new material detail layer. Settings offers Fresh, Used and Worn surface wear; Fresh removes added wear while retaining existing painted art. See [material rendering](docs/material-rendering.md) for the shader approach, FPS rendering references and limits. Turntable and separated-layout transitions use elapsed time and respect reduced motion. The separated layout uses arbitrary art offsets, not real mechanical travel or an assembly sequence. Display scale is arbitrary.
 
 The separately delivered m4a1-eight-variants-master.blend is the combined editable master with all original base groups, eight accessory groups, packed images and studio HDR. It can open on another computer without this workspace. It retains the G33 pivot, fixed mount, and separate detail meshes. Studio preview images are Blender renders, not screenshots of the browser renderer. The original m4a1-exterior.blend is also retained.
 
@@ -52,7 +52,7 @@ The starter platform is M4A1 only. An exact second AK variant remains a later mi
 - components/asset-inspector.tsx: sourced mesh inspector and wiki reference panel.
 - lib/gltf-model.ts: GLB loading, preserved materials, display normalization and cleanup.
 - lib/model-assets.ts: asset provenance, exact mesh IDs and cited game references.
-- lib/asset-materials.ts: per-part PBR coating shader and original-material restoration.
+- lib/asset-materials.ts: material-specific PBR surface detail, coatings and wear.
 - lib/asset-appearance.ts: sourced-model saved state and import/export validation.
 - lib/display-layout.ts: reversible inspection spacing and visible-only fit bounds.
 - lib/variant-catalogue.ts: eight accessory definitions, names, references, and preview paths.
@@ -66,7 +66,7 @@ The starter platform is M4A1 only. An exact second AK variant remains a later mi
 - app/globals.css: responsive interface styling.
 - ASSET-CREDITS.md: model and environment provenance.
 
-Saved appearances use local storage. They are specific to the browser and origin; a local-server collection does not automatically transfer to a hosted URL. Export JSON to retain a separate copy. Version 2 exports include variants, magnifier position, visibility, and finishes. Version 1 appearances still load with their original shapes. Camera position and temporary inspection spacing are display preferences. Undo and redo include accessory selection and magnifier position.
+Saved appearances use local storage. They are specific to the browser and origin; a local-server collection does not automatically transfer to a hosted URL. Export JSON to retain a separate copy. Version 2 exports include variants, magnifier position, visibility, finishes and optional surface wear. Version 1 appearances still load with their original shapes. Camera position and temporary inspection spacing are display preferences. Undo and redo include accessory selection, magnifier position and surface wear.
 
 ## Validation
 
