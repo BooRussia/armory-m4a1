@@ -1,0 +1,25 @@
+export type Config = { stock:'classic'|'compact'|'precision'; handguard:'quad'|'slim'|'skeleton'; optic:'iron'|'reflex'|'scope'; magazine:'standard'|'short'|'extended'; muzzle:'standard'|'shroud'; foregrip:'none'|'vertical'|'angled'; finish:'graphite'|'sand'|'olive'; detail:'clean'|'worn' };
+export type Slot = keyof Config;
+export type Option = { id:string; name:string; subtitle:string; description:string; swatch?:string };
+export const DEFAULT:Config = {stock:'classic',handguard:'slim',optic:'reflex',magazine:'standard',muzzle:'standard',foregrip:'angled',finish:'sand',detail:'worn'};
+const option = (id:string,name:string,subtitle:string,description:string,swatch?:string):Option => ({id,name,subtitle,description,swatch});
+export const CATALOGUE:{id:Slot;name:string;short:string;options:Option[]}[] = [
+ {id:'handguard',name:'Handguard',short:'Front assembly',options:[option('quad','Quad rail','CLASSIC PROFILE','A squared exterior with pronounced rail sections and a substantial silhouette.'),option('slim','Slimline','CONTINUOUS PROFILE','A narrow silhouette with elongated ventilation details.'),option('skeleton','Skeleton','OPEN PROFILE','An open sculpted shell with cutaways and contrasting exterior detail.')]},
+ {id:'stock',name:'Stock',short:'Rear profile',options:[option('classic','Classic','SERVICE PROFILE','A familiar sloping cheek surface and textured rear pad.'),option('compact','Compact','MINIMAL PROFILE','A compact angular silhouette with a pared-back exterior.'),option('precision','Precision','SCULPTED PROFILE','A fuller sculpted cheek surface with distinct layered forms.')]},
+ {id:'optic',name:'Sights',short:'Top profile',options:[option('iron','Iron sights','OPEN SIGHT LINE','A low visual profile with paired exterior sight forms.'),option('reflex','Reflex housing','COMPACT GLASS','A compact glass housing in a protective sculpted frame.'),option('scope','Scope housing','TUBULAR GLASS','An elongated optic housing with rings and exterior detail.')]},
+ {id:'magazine',name:'Magazine',short:'Lower profile',options:[option('standard','Standard profile','CURVED SHELL','A curved exterior shell with recessed ribs and a contrasting base.'),option('short','Short profile','COMPACT SHELL','A shorter exterior for a compact lower silhouette.'),option('extended','Extended profile','LONG SHELL','An elongated decorative shell with prominent ribbing.')]},
+ {id:'muzzle',name:'Muzzle exterior',short:'Front profile',options:[option('standard','Standard profile','SHORT EXTERIOR','A short dark exterior with longitudinal surface details.'),option('shroud','Display shroud','EXTENDED EXTERIOR','A long cylindrical display shell with contrasting end bands.')]},
+ {id:'foregrip',name:'Foregrip',short:'Lower accessory',options:[option('none','None','CLEAR PROFILE','Leave the lower handguard silhouette unobstructed.'),option('vertical','Vertical','STRAIGHT PROFILE','A vertical sculpted exterior with a textured surface.'),option('angled','Angled','SWEPT PROFILE','A swept-back shape following the underside of the model.')]},
+ {id:'finish',name:'Finish',short:'Material palette',options:[option('graphite','Graphite','DARK NEUTRAL','Graphite surfaces with subtle metal and polymer variation.','#474b48'),option('sand','Sand','WARM EARTH','Warm sand furniture against dark exposed metal.','#ae9470'),option('olive','Olive','MUTED GREEN','Muted olive furniture with dark metal accents.','#68714d')]},
+ {id:'detail',name:'Surface',short:'Wear treatment',options:[option('clean','Clean','FRESH SURFACE','Restrained grain, clear finishes, and crisp exterior detail.'),option('worn','Worn','AGED SURFACE','More pronounced surface variation and exterior wear.')]}
+];
+export const PRESETS:{id:string;name:string;note:string;config:Config}[]=[
+ {id:'service',name:'Service study',note:'Graphite / classic',config:{...DEFAULT,finish:'graphite',handguard:'quad',foregrip:'vertical',detail:'clean'}},
+ {id:'field',name:'Field study',note:'Sand / slimline',config:{...DEFAULT,finish:'sand',handguard:'slim',stock:'compact',foregrip:'angled',detail:'worn'}},
+ {id:'studio',name:'Studio study',note:'Olive / sculpted',config:{...DEFAULT,finish:'olive',handguard:'skeleton',stock:'precision',optic:'scope',magazine:'short',muzzle:'shroud',foregrip:'none'}}
+];
+export function label(slot:Slot,value:string){return CATALOGUE.find(c=>c.id===slot)?.options.find(o=>o.id===value)?.name??value;}
+export function validConfig(v:unknown):v is Config {return !!v&&typeof v==='object'&&!Array.isArray(v)&&CATALOGUE.every(c=>c.options.some(o=>o.id===(v as Record<string,unknown>)[c.id]));}
+export type SavedAppearance={id:string;name:string;savedAt:string;config:Config};
+export const STORAGE_KEY='armory:appearances:v1';
+export function readAppearances(raw:string|null):SavedAppearance[]{if(!raw)return [];try{const d:unknown=JSON.parse(raw);return Array.isArray(d)?d.filter((v):v is SavedAppearance=>!!v&&typeof v==='object'&&typeof v.id==='string'&&typeof v.name==='string'&&v.name.length<=80&&typeof v.savedAt==='string'&&validConfig(v.config)).slice(0,100):[];}catch{return [];}}
