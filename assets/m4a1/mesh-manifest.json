@@ -1,0 +1,203 @@
+{
+  "title": "M4A1 exterior art - Blender refinement",
+  "blender": "4.5.9 LTS",
+  "source": "https://opengameart.org/content/m4a1-assault-rifle",
+  "creator": "nisu / 3DModelsCC0",
+  "license": "CC0 1.0",
+  "scale": "Arbitrary display units, longest axis approximately 1",
+  "gltfAxes": "Y up, muzzle -Z",
+  "sourceTrianglesTotal": 9258,
+  "editableTrianglesTotal": 9236,
+  "removedCoincidentOrDegenerateTriangles": 22,
+  "groups": [
+    {
+      "id": "Magazine",
+      "sourceNode": "Magazine",
+      "sourceTriangles": 758,
+      "editableTriangles": 736,
+      "removedCoincidentOrDegenerateTriangles": 22,
+      "bevelWidthDisplayUnits": 0.00023,
+      "bevelSegments": 3,
+      "evaluatedTriangles": 3119
+    },
+    {
+      "id": "Base",
+      "sourceNode": "Base",
+      "sourceTriangles": 2394,
+      "editableTriangles": 2394,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 2394
+    },
+    {
+      "id": "Pistol_Grip",
+      "sourceNode": "Base",
+      "sourceTriangles": 284,
+      "editableTriangles": 284,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0.00023,
+      "bevelSegments": 3,
+      "evaluatedTriangles": 1046
+    },
+    {
+      "id": "Charging_Handle",
+      "sourceNode": "Charging_Handle",
+      "sourceTriangles": 124,
+      "editableTriangles": 124,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 124
+    },
+    {
+      "id": "Sight",
+      "sourceNode": "Sight",
+      "sourceTriangles": 812,
+      "editableTriangles": 812,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 812
+    },
+    {
+      "id": "Sight_2",
+      "sourceNode": "Sight_2",
+      "sourceTriangles": 232,
+      "editableTriangles": 232,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 232
+    },
+    {
+      "id": "Switch1",
+      "sourceNode": "Switch1",
+      "sourceTriangles": 48,
+      "editableTriangles": 48,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 48
+    },
+    {
+      "id": "Switch2",
+      "sourceNode": "Switch2",
+      "sourceTriangles": 78,
+      "editableTriangles": 78,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 78
+    },
+    {
+      "id": "Firemode_Selector",
+      "sourceNode": "Firemode_Selector",
+      "sourceTriangles": 108,
+      "editableTriangles": 108,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 108
+    },
+    {
+      "id": "Trigger",
+      "sourceNode": "Trigger",
+      "sourceTriangles": 68,
+      "editableTriangles": 68,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 68
+    },
+    {
+      "id": "Ejector_Lid",
+      "sourceNode": "Ejector_Lid",
+      "sourceTriangles": 128,
+      "editableTriangles": 128,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 128
+    },
+    {
+      "id": "Ejector_2",
+      "sourceNode": "Ejector_2",
+      "sourceTriangles": 36,
+      "editableTriangles": 36,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 36
+    },
+    {
+      "id": "Barrel",
+      "sourceNode": "Barrel",
+      "sourceTriangles": 606,
+      "editableTriangles": 606,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 606
+    },
+    {
+      "id": "Handguard",
+      "sourceNode": "Barrel",
+      "sourceTriangles": 2242,
+      "editableTriangles": 2242,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 2242
+    },
+    {
+      "id": "Front_Sight",
+      "sourceNode": "Barrel",
+      "sourceTriangles": 454,
+      "editableTriangles": 454,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0,
+      "bevelSegments": 0,
+      "evaluatedTriangles": 454
+    },
+    {
+      "id": "Muzzle_Exterior",
+      "sourceNode": "Barrel",
+      "sourceTriangles": 240,
+      "editableTriangles": 240,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0.00023,
+      "bevelSegments": 3,
+      "evaluatedTriangles": 1680
+    },
+    {
+      "id": "Stock",
+      "sourceNode": "Stock",
+      "sourceTriangles": 646,
+      "editableTriangles": 646,
+      "removedCoincidentOrDegenerateTriangles": 0,
+      "bevelWidthDisplayUnits": 0.00023,
+      "bevelSegments": 3,
+      "evaluatedTriangles": 2432
+    }
+  ],
+  "limits": [
+    "Source interpretation and 2K textures remain; not a dimensionally exact branded recreation.",
+    "Exterior surfaces only; no internals, threads, CAD tolerances or operational assembly.",
+    "Many small fastener-like marks are in the source textures; individual fastener geometry is not provided.",
+    "Chamfers are artistic edge treatment in arbitrary display units.",
+    "Surface normals recomputed with angle-sharp edges; four chamfered groups use weighted normal modifiers."
+  ],
+  "normalTextureStrength": 0.35,
+  "evaluatedTriangles": 15607,
+  "exportedMeshCount": 17,
+  "exportedBytes": 4839148,
+  "pbrImages": {
+    "count": 3,
+    "resolution": [
+      2048,
+      2048
+    ]
+  },
+  "materials": 17
+}
