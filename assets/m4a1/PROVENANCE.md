@@ -39,3 +39,4 @@
   - No attribution or licensing is asserted for the user's reference screenshot. It is not included in the delivered application.
 
 The project is independent of Colt and Battlestate Games.
+- September 5, 2026 material pass: original deterministic surface-detail data and Three.js shaders add material-specific roughness, micro-height, sparse scratches and convex-edge wear. The live viewer uses these effects; GLB and Blender files remain unchanged. See docs/material-rendering.md for sources, implementation and approximation limits.
