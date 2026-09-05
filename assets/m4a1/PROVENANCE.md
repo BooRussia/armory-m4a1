@@ -40,3 +40,4 @@
 
 The project is independent of Colt and Battlestate Games.
 - September 5, 2026 material pass: original deterministic surface-detail data and Three.js shaders add material-specific roughness, micro-height, sparse scratches and convex-edge wear. The live viewer uses these effects; GLB and Blender files remain unchanged. See docs/material-rendering.md for sources, implementation and approximation limits.
+- All-part material pass: current runtime coverage is 380 material slots with per-product/region recipes, neutral nonmetallic windows and original approximate grip-height data. Existing source atlas channels, geometry and Blender files remain intact. See docs/part-materials.md and docs/material-coverage.json in the source repository.
